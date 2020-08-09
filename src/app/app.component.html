@@ -1,0 +1,100 @@
+
+    <mat-spinner *ngIf="loading" style="margin-left: 50%" diameter="20"></mat-spinner>
+
+  <mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <div><b>Filters</b></div>
+      <div>Lanuch year</div>
+        <div style="padding:10px">
+            <button mat-raised-button (click)="onYearLaunch('2006')" [ngClass]="buttonClicked ? 'change-button-color' : 'button-color'">2006</button>
+            <button mat-raised-button (click)="onYearLaunch('2007')" [ngClass]="buttonClicked1 ? 'change-button-color' : 'button-color'">2007</button>
+        </div>
+        <div style="padding:10px">
+            <button mat-raised-button (click)="onYearLaunch('2008')" [ngClass]="buttonClicked2 ? 'change-button-color' : 'button-color'">2008</button>
+            <button mat-raised-button (click)="onYearLaunch('2009')" [ngClass]="buttonClicked3 ? 'change-button-color' : 'button-color'">2009</button>
+        </div>
+        <div style="padding:10px">
+            <button mat-raised-button (click)="onYearLaunch('2010')" [ngClass]="buttonClicked4 ? 'change-button-color' : 'button-color'">2010</button>
+            <button mat-raised-button (click)="onYearLaunch('2011')" [ngClass]="buttonClicked5 ? 'change-button-color' : 'button-color'">2011</button>
+        </div>
+        <div style="padding:10px">
+            <button mat-raised-button (click)="onYearLaunch('2012')" [ngClass]="buttonClicked6 ? 'change-button-color' : 'button-color'">2012</button>
+            <button mat-raised-button (click)="onYearLaunch('2013')" [ngClass]="buttonClicked7 ? 'change-button-color' : 'button-color'">2013</button>
+        </div>
+        <div style="padding:10px">
+            <button mat-raised-button (click)="onYearLaunch('2014')" [ngClass]="buttonClicked8 ? 'change-button-color' : 'button-color'">2014</button>
+            <button mat-raised-button (click)="onYearLaunch('2015')" [ngClass]="buttonClicked9 ? 'change-button-color' : 'button-color'">2015</button>
+        </div>
+        <div style="padding:10px">
+            <button mat-raised-button (click)="onYearLaunch('2016')" [ngClass]="buttonClicked10 ? 'change-button-color' : 'button-color'">2016</button>
+            <button mat-raised-button (click)="onYearLaunch('2017')" [ngClass]="buttonClicked11 ? 'change-button-color' : 'button-color'">2017</button>
+        </div>
+        <div style="padding:10px">
+            <button mat-raised-button (click)="onYearLaunch('2018')" [ngClass]="buttonClicked12 ? 'change-button-color' : 'button-color'">2018</button>
+            <button mat-raised-button (click)="onYearLaunch('2019')" [ngClass]="buttonClicked13 ? 'change-button-color' : 'button-color'">2019</button>
+        </div>
+        <div style="padding:10px">
+            <button mat-raised-button (click)="onYearLaunch('2020')" [ngClass]="buttonClicked14 ? 'change-button-color' : 'button-color'">2020</button>
+        </div>
+
+       <div>Successfull Launch</div>
+        <div style="padding:10px">
+            <button mat-raised-button (click)="onLaunch(true)" [ngClass]="isTrue ? 'change-button-color' : 'button-color'">True</button>
+            <button mat-raised-button (click)="onLaunch(false)" [ngClass]="isFalse ? 'change-button-color' : 'button-color'">False</button>
+        </div>
+        <div>Successfull Landing</div>
+        <div style="padding:10px">
+            <button mat-raised-button  (click)="onLand(true)" [ngClass]="isTrueLand ? 'change-button-color' : 'button-color'">True</button>
+            <button mat-raised-button (click)="onLand(false)" [ngClass]="isFalseLand ? 'change-button-color' : 'button-color'">False</button>
+        </div>
+      
+
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div *ngIf="!buttonClicked && !buttonClicked1 && !buttonClicked2 && !buttonClicked3 && !buttonClicked4 && !buttonClicked5 && !buttonClicked6
+        && !buttonClicked7 && !buttonClicked8 && !buttonClicked9 && !buttonClicked10 && !buttonClicked11 && !buttonClicked12 && !buttonClicked13 && !buttonClicked14">
+            <mat-card  *ngFor="let data of spacedata; let i = index" class="example-card flex-container" style="display: inline-block; padding:20px;">
+            <mat-card-header>
+              <img mat-card-image src="{{data.links.mission_patch_small==undefined ? NA : data.links.mission_patch_small}}" style="background-color:lightgray">
+            </mat-card-header>
+              <mat-card-subtitle style="color:rgb(11, 11, 133); font-weight: bold;">{{data.mission_name == undefined || null ? NA : data.mission_name}} #{{i}}</mat-card-subtitle>
+              <mat-card-subtitle><b>Mission Id :</b>{{data.mission_id[i]}}
+              </mat-card-subtitle>
+              <mat-card-subtitle><b>Launch Year:</b>{{data.launch_year}}
+            </mat-card-subtitle> 
+            <mat-card-subtitle><b>Successfull Launch:</b> {{data.launch_success}}</mat-card-subtitle>
+        
+            <mat-card-subtitle><b>Successfull Landing:</b>{{landsuccess[i][0].land_success==undefined || null ? "NA" : landsuccess[i][0].land_success}}</mat-card-subtitle>
+
+          </mat-card>
+        </div>
+        <div *ngIf="buttonClicked || buttonClicked1 || buttonClicked2 || buttonClicked3 || buttonClicked4 || buttonClicked5 || buttonClicked6
+        || buttonClicked7 || buttonClicked8 || buttonClicked9 || buttonClicked10 || buttonClicked11 || buttonClicked12 || buttonClicked13 || buttonClicked14">
+          <mat-card  *ngFor="let data of filterdata; let i = index" class="example-card flex-container" style="display: inline-block; padding:20px;">
+            <mat-card-header>
+              <img mat-card-image src="{{data.links.mission_patch_small==undefined ? NA : data.links.mission_patch_small}}" style="background-color:lightgray">
+            </mat-card-header>
+              <mat-card-subtitle style="color:rgb(11, 11, 133); font-weight: bold;">{{data.mission_name == undefined || null ? NA : data.mission_name}} #{{i}}</mat-card-subtitle>
+              <mat-card-subtitle><b>Mission Id :</b>{{data.mission_id[i]}}
+              </mat-card-subtitle>
+              <mat-card-subtitle><b>Launch Year:</b>{{data.launch_year}}
+            </mat-card-subtitle> 
+            <mat-card-subtitle><b>Successfull Launch:</b> {{data.launch_success}}</mat-card-subtitle>
+        
+            <mat-card-subtitle><b>Successfull Landing:</b>{{data.rocket.first_stage.cores[0].land_success}}</mat-card-subtitle>
+
+          </mat-card>
+        </div>
+  
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+
+
+
+
+
+
+
+
